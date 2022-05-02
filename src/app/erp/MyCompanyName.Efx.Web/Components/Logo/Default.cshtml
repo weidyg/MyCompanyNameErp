@@ -1,0 +1,14 @@
+﻿@inject IBrandingProvider BrandingProvider
+@inject ICurrentCompany CurrentCompany
+
+
+<a href="~/" title="@CurrentCompany.Name" style="color:white;padding:0 8px 0 0;">
+    @if (!BrandingProvider.LogoUrl.IsNullOrWhiteSpace())
+    {
+        <img style="height:50px;" src="@BrandingProvider.LogoUrl"
+             alt="@BrandingProvider.AppName"
+             title="@BrandingProvider.AppName">
+    }
+    @CurrentCompany.Name
+</a>
+

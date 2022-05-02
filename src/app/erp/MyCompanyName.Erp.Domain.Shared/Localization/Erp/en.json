@@ -1,0 +1,102 @@
+{
+  "Culture": "en",
+  "Texts": {
+    "MyCompanyNameERP": "MyCompanyName ERP",
+    "ApplyCompanyAccount": "Apply for company account",
+    "Login": "Login",
+    "SignIn": "Sign In",
+    "Create": "Create",
+    "Add": "Add",
+    "All": "All",
+    "Enable": "Enable",
+    "Disable": "Disable",
+    "PleaseInput": "Please input",
+    "KeyWords": "key words",
+    "Sure": "Ok",
+    "Success": "Success",
+    "BackTo": "Back to",
+    "UploadingWithThreeDot": "Uploading...",
+    "SentFailed": "sent failed.",
+    //
+    "Find{0}": "Find the following record related to {0}.",
+    "NoFind{0}": "No records associated with {0} were found.",
+    //µÇÂ¼Ò³Ãæ
+    "OmniChannelSolutionForECommerce": "Omni Channel Solution For E-Commerce",
+    "ContactNumber": "Contact Number",
+    "AccountLogin": "Account login",
+    "UserNameOrLoginAccount": "User name (login account)",
+    "PleaseInputAPassword": "Please input a password",
+    "MyCompanyName": "Fujian MyCompanyName e-commerce Co., Ltd",
+    "FujianICPPrepareNo{0}-{1}": "Fujian ICP prepare No. 14001337-1",
+    "FujianPublicNetworkAnbeiNo{0}": "Fujian public network Anbei no.{0}",
+
+    "UserLockedOutMessage": "The user account has been locked out due to invalid login attempts. Please wait a while and try again.",
+    "InvalidUserNameOrPassword": "Invalid username or password!",
+    "LoginIsNotAllowed": "You are not allowed to login! You need to confirm your email/phone number.",
+    "LoginSystemIsNotAllowed": "You are not allowed to login! You are not a user of the system.",
+    //   
+    "SearchIerms": "Search Ierms",
+    "UsernameOrPasswordCannotBeEmpty": "User name or password cannot be empty!",
+    "LoginSuccess": "Login successful",
+    "GoingToHomePage": "Going to home page, Please wait ...",
+    "AllMenus": "All menus",
+    "Authorization failed! Given policy has not granted.": "Authorization failed! Given policy has not granted.",
+
+    "SelectAllInAllTabs": "Grant all permissions",
+    "SelectAllInThisTab": "Select all",
+
+    //---------------------------Business Exception Code--------------------------
+    "MyCompanyName.Erp:000001": "{Name} should be unique. {Value} is already taken!",
+    "MyCompanyName.Erp:000002": "{Name} [{Value}] already exists, please do not add it repeatedly!",
+
+    //--------------------------Permission--------------------------
+    "Permission": "Permission",
+    "Permission:Create": "Create",
+    "Permission:Edit": "Edit",
+    "Permission:Delete": "Delete",
+    "Permission:ChangePermissions": "Change permissions",
+
+    "Permission:FinanceManagement": "Finance management",
+    "Permission:BankCard": "BankCard",
+    "Permission:ThirdPartyPay": "ThirdPartyPay",
+
+    "Permission:ResellerManagement": "Reseller management",
+    "Permission:Level": "Level",
+
+    //--------------------------Menu--------------------------
+    "Menu.Home": "Home",
+    "Menu.LogOut": "LogOut",
+    "Menu.MyProfile": "My Profile",
+
+    "Menu.Product": "Product",
+    "Menu.Product.Info": "Product Information",
+    "Menu.Product.Info.List": "Products",
+    "Menu.Product.Info.Category": "Category",
+    "Menu.Product.Info.Brand": "Brand",
+
+    "Menu.Order": "Order",
+    "Menu.Warehouse": "Warehouse",
+
+    "Menu.Reseller": "Reseller",
+    "Menu.Reseller.Info": "Reseller Information",
+    "Menu.Reseller.Info.Level": "Reseller Level",
+    "Menu.Reseller.Info.List": "Reseller List",
+
+    "Menu.Finance": "Finance",
+    "Menu.Finance.Payer": "Payer",
+    "Menu.Finance.Payer.Account": "Account",
+    "Menu.Finance.Payer.Account.Detail": "Account Detail",
+    "Menu.Finance.Payer.TradeDetail": "Trade Detail",
+
+    "Menu.Finance.BankCard": "BankCard",
+
+    "Menu.Finance.Payee": "Payee",
+    "Menu.Finance.Payee.BankCard": "BankCard",
+    "Menu.Finance.Payee.ThirdPartyPay": "ThirdPartyPay",
+
+    "Menu.System": "System",
+    "Menu.System.Identity": "Identity",
+    "Menu.System.Identity.Roles": "Roles",
+    "Menu.System.Identity.Users": "Users"
+  }
+}

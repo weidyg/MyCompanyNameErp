@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\..\..\common.props" />
+  <Import Project="..\..\..\..\configureawait.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>MyCompanyName.Erp</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="EntityFrameworkCore\IdentityEfCoreQueryableExtensions.cs" />
+    <Compile Remove="EntityFrameworkCore\Repository\EfCoreIdentityRoleRepository.cs" />
+    <Compile Remove="EntityFrameworkCore\Repository\EfCoreIdentityUserRepository.cs" />
+    <Compile Remove="EntityFrameworkCore\Repository\EfCoreOrganizationUnitRepository.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.EntityFrameworkCore.MySQL" Version="4.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\framework\MyCompanyName.Abp.EntityFrameworkCore\MyCompanyName.Abp.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\..\..\modules\Identity\MyCompanyName.Identity.EntityFrameworkCore\MyCompanyName.Identity.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\..\..\modules\Tenant\MyCompanyName.TenantManagement.EntityFrameworkCore\MyCompanyName.TenantManagement.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\MyCompanyName.Erp.Domain\MyCompanyName.Erp.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

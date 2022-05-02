@@ -1,0 +1,27 @@
+﻿.ant-menu-inline-collapsed {
+    width: 50px;
+}
+
+    .ant-menu-inline-collapsed > .ant-menu-item,
+    .ant-menu-inline-collapsed > .ant-menu-item-group > .ant-menu-item-group-list > .ant-menu-item, .ant-menu-inline-collapsed > .ant-menu-item-group > .ant-menu-item-group-list > .ant-menu-submenu > .ant-menu-submenu-title,
+    .ant-menu-inline-collapsed > .ant-menu-submenu > .ant-menu-submenu-title {
+        left: 0;
+        padding: 0 0px !important;
+        text-overflow: clip;
+    }
+
+    .ant-menu-inline-collapsed .menu-item-icon {
+        font-size: 18px;
+        text-align: center;
+        width: 50px;
+    }
+.ant-menu-inline .ant-menu-item:not(:last-child) {
+    margin-bottom: 2px;
+}
+.ant-menu-sub.ant-menu-inline > .ant-menu-item,
+.ant-menu-sub.ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title {
+    height: 32px;
+    line-height: 32px;
+    list-style-position: inside;
+    list-style-type: disc;
+}

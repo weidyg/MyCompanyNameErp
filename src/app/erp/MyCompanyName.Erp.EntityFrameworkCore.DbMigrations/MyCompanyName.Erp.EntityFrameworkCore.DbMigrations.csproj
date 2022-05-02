@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\..\..\common.props" />
+  <Import Project="..\..\..\..\configureawait.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>MyCompanyName.Erp</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.EntityFrameworkCore.MySQL" Version="4.4.0" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.9">
+	    <PrivateAssets>all</PrivateAssets>
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.9">
+	    <PrivateAssets>all</PrivateAssets>
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MyCompanyName.Erp.Domain\MyCompanyName.Erp.Domain.csproj" />
+    <ProjectReference Include="..\MyCompanyName.Erp.EntityFrameworkCore\MyCompanyName.Erp.EntityFrameworkCore.csproj" />
+  </ItemGroup>
+
+</Project>

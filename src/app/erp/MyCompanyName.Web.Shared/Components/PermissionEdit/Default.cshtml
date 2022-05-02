@@ -1,0 +1,53 @@
+﻿@inject IHtmlLocalizer<WebSharedResource> L
+<a-app id="permissionEdit">
+    <a-modal :visible="visible"
+             :width="600"
+             :title="'@L["Permission"].Value -'+ entityDisplayName"
+             :confirm-loading="submitting"
+             :mask-closable="false"
+             v-on:ok="handleOk"
+             v-on:cancel="handleCancel"
+             class="st-form-modal">
+
+        <a-spin :spinning="loading">
+            <a-checkbox v-model:checked="selectAllInAllTabs"
+                        :indeterminate="selectPartInAllTabs">
+                @L["SelectAllInAllTabs"].Value
+            </a-checkbox>
+            <span><a-divider style="margin: 8px 0px 12px;" /></span>
+            <a-tabs tab-position="left">
+                <template v-for="(group,index) in data" :key="'group'+index">
+                    <a-tab-pane :tab="group.displayName+'('+ group.isGrantedCount+')'">
+                        <h2>{{group.displayName}}</h2>
+                        <span><a-divider style="margin: 8px 0px 12px;" /></span>
+
+                        <a-checkbox v-model:checked="group.isAllPermissionsGranted"
+                                    :indeterminate="group.isPartPermissionsGranted"
+                                    :disabled="group.inoperable">
+                            @L["SelectAllInThisTab"].Value
+                        </a-checkbox>
+                        <span><a-divider style="margin: 8px 0px 12px;" /></span>
+                        <a-row :gutter="[8,8]">
+                            <template v-for="(subGroup,index) in group.getSubGroups()" :key="'subGroup'+index">
+                                <a-col style="width:180px">
+                                    <template v-for="(permission,index) in group.getSubGroupItems(subGroup)" :key="'permission'+index">
+                                        <a-checkbox v-model:checked="permission.isGranted"
+                                                    :indeterminate="permission.indeterminate"
+                                                    :disabled="permission.inoperable"
+                                                    :style="'margin-left:'+permission.depth * 20+'px;margin-bottom: 2px;'">
+                                            {{permission.displayName}}
+                                            <span v-if="permission.inoperable">
+                                                [{{permission.displaySubName}}]
+                                            </span>
+                                        </a-checkbox>
+                                        <br />
+                                    </template>
+                                </a-col>
+                            </template>
+                        </a-row>
+                    </a-tab-pane>
+                </template>
+            </a-tabs>
+        </a-spin>
+    </a-modal>
+</a-app>

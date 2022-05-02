@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MyCompanyName.Erp.Web</name>
+    </assembly>
+    <members>
+        <member name="M:MyCompanyName.Erp.Web.ErpWebModule.ConfigureVirtualFileSystem(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            虚拟文件系统
+            </summary>
+            <param name="services"></param>
+        </member>
+    </members>
+</doc>

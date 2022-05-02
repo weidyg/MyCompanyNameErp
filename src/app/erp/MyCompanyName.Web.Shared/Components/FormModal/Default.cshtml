@@ -1,0 +1,140 @@
+﻿@{
+    var FormItemControl = Tag.Template(
+    @<span>
+        <template v-if="!item.type || item.type === 'input'">
+            <a-input v-model:value="formModel[item.field]"
+                     :placeholder="item.label"
+                     :disabled="item.disabled"
+                     v-on:change="item.change"
+                     v-bind="item.bind"
+                     allow-clear>
+            </a-input>
+        </template>
+        <template v-if="item.type === 'password'">
+            <a-input-password v-model:value="formModel[item.field]"
+                              :placeholder="item.label"
+                              :disabled="item.disabled"
+                              v-on:change="item.change"
+                              v-bind="item.bind"
+                              allow-clear>
+            </a-input-password>
+        </template>
+        <template v-if="item.type === 'email'">
+            <a-auto-complete v-model:value="formModel[item.field]"
+                         :placeholder="item.label"
+                         :disabled="item.disabled"
+                         v-bind="item.bind"
+                         v-on:search="onEmailSearch"
+                         allow-clear>
+            <template #options>
+                <a-select-option v-for="email in emailOptions" :key="email">
+                    {{ email }}
+                </a-select-option>
+            </template>
+        </a-auto-complete>
+        </template>
+        <template v-else-if="item.type === 'number'">
+            <a-input-number v-model:value="formModel[item.field]"
+                            :placeholder="item.label"
+                            :min="item.min" :max="item.max" :step="item.step"
+                            :precision="item.precision"
+                            :decimal-separator="item.decimalSeparator"
+                            :parser="item.parser" :formatter="item.formatter"
+                            v-bind="item.bind">
+        </template>
+        <template v-else-if="item.type === 'textarea'">
+            <a-textarea v-model:value="formModel[item.field]"
+                        :placeholder="item.label"
+                        :auto-size="item.autoSize"
+                        allow-clear
+                        v-bind="item.bind" />
+        </template>
+        <template v-else-if="item.type === 'checkboxs'">
+            <a-checkbox-group v-model:value="formModel[item.field]"
+                              :name="item.field"
+                              :options="item.options" />
+        </template>
+        <template v-else-if="item.type === 'switch'">
+            <a-switch v-model:checked="formModel[item.field]"
+                      v-bind="item.bind">
+            </a-switch>
+        </template>
+        <template v-else-if="item.type === 'upload-picture'">
+            <upload-single v-model:url="formModel[item.field]"
+                           type="picture"
+                           :action="uploadUrl"
+                           :data="item.data"
+                           v-on:change="(file)=>onUploadChange(file,item)"
+                           :before-upload="item.beforeUpload">
+                <a-button v-if="!formModel[item.field]">
+                    <a-space>
+                        <i class="fa fa-upload"></i>
+                        点击上传
+                    </a-space>
+                </a-button>
+            </upload-single>
+        </template>
+    </span>);
+}
+
+@{
+    var FormItem = Tag.Template(
+    @<a-form-item v-if="item.visible !== false"
+                  v-show="item.hidden !== true"
+                  :name="item.field"
+                  :rules="item.rules"
+                  @*:label="item.label"
+                  :extra="item.extra"
+                  :help="item.help"*@
+                  :label-col="item.labelCol"
+                  :wrapper-col="item.wrapperCol">
+        <template #label>
+            {{item.label}}
+            <a-tooltip v-if="item.tip" placement="right">
+                <template #title>
+                    {{item.tip}}
+                </template>
+                <i class="fa fa-question-circle-o" style="cursor:help"> </i>
+            </a-tooltip>
+        </template>
+        <template #help>
+            {{item.help}}
+        </template>
+        <template #extra>
+            {{item.extra}}
+        </template>
+        @item
+    </a-form-item>, FormItemControl);
+}
+<a-app id="@Model.Id">
+    <a-modal v-model:visible="visible"
+             :title="title"
+             :mask="mask"
+             :mask-closable="maskClosable"
+             :closable="closable"
+             :ok-button-props="{ ...okButtonProps }"
+             v-on:ok="handleOk"
+             v-on:cancel="handleCancel"
+             class="st-form-modal">
+        <a-form ref="formRef"
+                v-bind="formItemLayout"
+                :model="formModel"
+                :rules="formRules"
+                :layout="formLayout"
+                :scroll-to-first-error="true">
+
+            <a-tabs v-if="isFormTabItems" type="card" size="small">
+                <template v-for="(tab,index) in formItems" :key="index">
+                    <a-tab-pane :tab="tab.title">
+                        <template v-for="item in tab.items">
+                            @FormItem
+                        </template>
+                    </a-tab-pane>
+                </template>
+            </a-tabs>
+            <template v-else v-for="item in formItems">
+                @FormItem
+            </template>
+        </a-form>
+    </a-modal>
+</a-app>

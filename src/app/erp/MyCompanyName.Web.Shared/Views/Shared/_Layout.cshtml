@@ -1,0 +1,19 @@
+﻿@inject IBrandingProvider BrandingProvider
+@{
+    var pageTitle = ViewData["Title"] == null ? BrandingProvider.AppName : $"{ViewData["Title"]}-{BrandingProvider.AppName}";
+    var rtl = CultureHelper.IsRtl ? "rtl" : string.Empty;
+}
+<!DOCTYPE html>
+<html lang="@CultureInfo.CurrentCulture.Name" dir="@rtl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@pageTitle</title>
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body>
+    @RenderBody()
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

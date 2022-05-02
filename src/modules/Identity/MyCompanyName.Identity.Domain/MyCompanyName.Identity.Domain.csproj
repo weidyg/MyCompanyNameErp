@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <RootNamespace>MyCompanyName.Identity</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Identity\IdentityClaim\Entities\**" />
+    <EmbeddedResource Remove="Identity\IdentityClaim\Entities\**" />
+    <None Remove="Identity\IdentityClaim\Entities\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Identity\Company\CompanyManager.cs" />
+    <Compile Remove="Identity\IdentityClaim\IIdentityClaimTypeRepository.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="5.0.9" />
+    <PackageReference Include="Volo.Abp.Ddd.Domain" Version="4.4.0" />
+    <PackageReference Include="Volo.Abp.AutoMapper" Version="4.4.0" />
+    <ProjectReference Include="..\..\..\framework\MyCompanyName.Abp.DataFilter\MyCompanyName.Abp.DataFilter.csproj" />
+    <ProjectReference Include="..\..\..\framework\MyCompanyName.Abp.Security\MyCompanyName.Abp.Security.csproj" />
+    <ProjectReference Include="..\MyCompanyName.Identity.Domain.Shared\MyCompanyName.Identity.Domain.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

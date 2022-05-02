@@ -1,0 +1,17 @@
+﻿@page
+@model LevelModel
+@inject IStringLocalizer<ErpResource> L
+@{
+    ViewData["Title"] = L[ErpMenus.Reseller.Info_Level];
+}
+
+@{var templates = new List<ColumnTpl>(){
+      new ColumnTpl("discount",@<a-tag>{{ text*10 }} 折</a-tag>)
+  };
+}
+<vc:data-table id="levelTable" templates="templates" />
+<vc:form-modal id="createModal" />
+<vc:form-modal id="editModal" />
+@section Scripts {
+    <a-script src="/Pages/Reseller/Level.cshtml.js" />
+}

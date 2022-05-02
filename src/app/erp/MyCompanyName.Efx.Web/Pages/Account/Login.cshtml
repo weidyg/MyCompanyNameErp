@@ -1,0 +1,74 @@
+﻿@page "/Login"
+@model LoginModel
+@inject IBrandingProvider BrandingProvider
+@inject IStringLocalizer<ErpResource> L
+@{
+    ViewData["Title"] = L["Login"];
+}
+<a-app id="login">
+    <a-layout>
+        <a-layout-content class="login-body">
+            <div class="login-body-content">
+                <div class="rightbox">
+                    <div class="login">
+                        <div class="title">
+                            @L["AccountLogin"]
+                            <vc:language-switch />
+                        </div>
+                        <a-form :model="loginForm"
+                                :rules="rules"
+                                v-bind="layout"
+                                v-on:finish="handleFinish"
+                                v-on:finish-failed="handleFinishFailed">
+
+                            <a-form-item name="username">
+                                <a-input v-model:value="loginForm.username" placeholder="@L["UserNameOrLoginAccount"]" allow-clear size="large" autocomplete="off">
+                                    <template #prefix>
+                                        <i class="fa fa-user" style="color: rgba(0, 0, 0, 0.25)"></i>
+                                    </template>
+                                </a-input>
+                            </a-form-item>
+
+                            <a-form-item name="password">
+                                <a-input-password v-model:value="loginForm.password" placeholder="@L["PleaseInputAPassword"]" allow-clear size="large" autocomplete="off">
+                                    <template #prefix>
+                                        <i class="fa fa-lock" style="color: rgba(0, 0, 0, 0.25)"></i>
+                                    </template>
+                                </a-input-password>
+                            </a-form-item>
+
+                            <a-form-item>
+                                <a-button size="large" type="primary" block html-type="submit" :loading="loading">
+                                    @L["SignIn"]
+                                </a-button>
+                                @*<a href="/apply">@L["ApplyCompanyAccount"]</a>*@
+                            </a-form-item>
+                        </a-form>
+                    </div>
+                </div>
+            </div>
+        </a-layout-content>
+        <a-layout-footer class="login-footer">
+            @{
+                var copright = new Copright
+                {
+                    Year = 2021,
+                    ComLink = "//www.mycompanyname.cn",
+                    ComName = L["MyCompanyName"],
+                    IcpName = L["FujianICPPrepareNo{0}-{1}", "14001337", "1"],
+                    NsName = L["FujianPublicNetworkAnbeiNo{0}", "35050302000480"],
+                };
+            }
+            <vc:copyright copright="copright"></vc:copyright>
+        </a-layout-footer>
+    </a-layout>
+</a-app>
+@section Styles {
+    <a-style-bundle>
+        <a-style src="/Pages/Account/Login.cshtml.css" />
+        <a-style type="@typeof(CopyrightStyleContributor)" />
+    </a-style-bundle>
+}
+@section Scripts {
+    <a-script src="/Pages/Account/Login.cshtml.js" />
+}

@@ -1,0 +1,105 @@
+﻿@page
+@model MyCompanyName.Erp.Web.Pages.Demo.Index1Model
+@{
+}
+
+<div id="counter1">
+    <a-list item-layout="horizontal"
+            :pagination="true"
+            :split="true"
+            rowKey="title"
+            :data-source="data"
+            >
+
+        <template #renderItem="{ item }">
+            <a-list-item>
+                <a-list-item-meta description="Ant Design, a design language for background applications, is refined by Ant UED Team">
+                    <template #title>
+                        <a href="https://www.antdv.com/">{{ item.title }}</a>
+                    </template>
+                    <template #avatar>
+                        <a-avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                    </template>
+                </a-list-item-meta>
+            </a-list-item>
+        </template>
+        <template #footer>
+            <div>Footer</div>
+        </template>
+    </a-list>
+</div>
+@section Scripts {
+    <script>
+        const getComponent = (instance, prop = 'default', options = instance, execute = true) => {
+            let com = undefined;
+            if (instance.$) {
+                const temp = instance[prop];
+                if (temp !== undefined) {
+                    return typeof temp === 'function' && execute ? temp(options) : temp;
+                } else {
+                    com = instance.$slots[prop];
+                    com = execute && com ? com(options) : com;
+                }
+            } else if (isVNode(instance)) {
+                const temp = instance.props && instance.props[prop];
+                if (temp !== undefined && instance.props !== null) {
+                    return typeof temp === 'function' && execute ? temp(options) : temp;
+                } else if (instance.type === Fragment) {
+                    com = instance.children;
+                } else if (instance.children && instance.children[prop]) {
+                    com = instance.children[prop];
+                    com = execute && com ? com(options) : com;
+                }
+            }
+            if (Array.isArray(com)) {
+                com = flattenChildren(com);
+                com = com.length === 1 ? com[0] : com;
+                com = com.length === 0 ? undefined : com;
+            }
+            return com;
+        };
+        const flattenChildren = (children = [], filterEmpty = true) => {
+            const temp = Array.isArray(children) ? children : [children];
+            const res = [];
+            temp.forEach(child => {
+                if (Array.isArray(child)) {
+                    res.push(...flattenChildren(child, filterEmpty));
+                } else if (child && child.type === Fragment) {
+                    res.push(...flattenChildren(child.children, filterEmpty));
+                } else if (child && isVNode(child)) {
+                    if (filterEmpty && !isEmptyElement(child)) {
+                        res.push(child);
+                    } else if (!filterEmpty) {
+                        res.push(child);
+                    }
+                } else if (child !== undefined && child !== null && child !== '') {
+                    res.push(child);
+                }
+            });
+            return res;
+        };
+
+
+        const data = [];
+        for (var i = 0; i < 100; i++) {
+            data.push({
+                title: 'Ant Design Title ' + i,
+            });
+        }
+        const App = {
+            setup() {
+                return {
+                    data,
+                };
+            },
+            created() {
+                const { $slots: { renderItem, footer } } = this;
+                console.log("renderItem", renderItem);
+                console.log("footer", this.$slots.footer);
+            }
+        };
+        var vm = Vue.createApp(App)
+            .use(antd)
+            .mount('#counter1');
+    </script>
+}

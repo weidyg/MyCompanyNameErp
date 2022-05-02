@@ -1,0 +1,56 @@
+﻿@page
+@model HomeModel
+@inject IStringLocalizer<ErpResource> L
+@{
+}
+<a-app id="homePage">
+    <a-back-top></a-back-top>
+    <a-affix>
+        <a-alert banner closable>
+            <template #icon>
+                <i class="fa fa-volume-up"></i>
+            </template>
+            <template #message>
+                <span style="white-space: nowrap;color:var(--highlight-color)">
+                    <marquee onmouseover="this.stop()" onmouseout="this.start()" style="height:19px;margin-bottom:-3px">
+                        公告条测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试
+                    </marquee>
+                </span>
+            </template>
+        </a-alert>
+    </a-affix>
+    <a-row :gutter="[8,8]" style="margin:4px">
+        <a-col :xs="24" :md="12" :lg="8" :xl="6" :xxl="4">
+            <a-card :loading="appUpdate.loading" title="通知消息">
+                <a-timeline>
+                    <template v-for="(item,index) in appUpdate.items">
+                        <a-timeline-item>
+                            <template #dot v-if="index==appUpdate.items.length-1">
+                                <i class="fa fa-clock-o" style="font-size: 16px"></i>
+                            </template>
+                            {{item.time}} {{item.title}}
+                        </a-timeline-item>
+                    </template>
+                </a-timeline>
+            </a-card>
+        </a-col>
+        <a-col :xs="24" :md="12" :lg="8" :xl="6" :xxl="4">
+            <a-card :loading="appUpdate.loading" :title="appUpdate.title">
+                <a-timeline>
+                    <template v-for="(item,index) in appUpdate.items">
+                        <a-timeline-item>
+                            <template #dot v-if="index==appUpdate.items.length-1">
+                                <i class="fa fa-clock-o" style="font-size: 16px"></i>
+                            </template>
+                            {{item.time}} {{item.title}}
+                        </a-timeline-item>
+                    </template>
+                </a-timeline>
+            </a-card>
+        </a-col>
+    </a-row>
+</a-app>
+
+@section Scripts {
+    <a-script src="/Pages/Home.cshtml.js" />
+}

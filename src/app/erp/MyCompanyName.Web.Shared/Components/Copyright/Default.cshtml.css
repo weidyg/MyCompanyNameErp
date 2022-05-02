@@ -1,0 +1,19 @@
+﻿.a-copright {
+    display: block;
+    width: 100%;
+    color: rgba(0, 0, 0, 0.65);
+    text-align: center;
+}
+
+.a-copright-beian-icon {
+    vertical-align: -4px;
+    padding: 0 8px;
+}
+
+.a-copright-company {
+    padding: 0 8px;
+}
+
+.a-copright a {
+    color: rgba(0, 0, 0, 0.85);
+}

@@ -1,0 +1,166 @@
+﻿@page
+@model DemoModel
+@{
+    ViewData["Title"] = "Demo page";
+}
+@using MyCompanyName.Erp.FinancesService;
+@using Volo.Abp.MultiTenancy;
+@using Volo.Abp.Security.Claims;
+@using Volo.Abp.Users;
+@using Volo.Abp.Clients;
+@using MyCompanyName.Erp.Localization;
+@using Microsoft.AspNetCore.Mvc.Localization;
+@using Microsoft.AspNetCore.Authentication;
+@using Microsoft.AspNetCore.Authentication.Cookies;
+@using System.Collections.Generic;
+@using System.Security.Claims;
+@using MyCompanyName.Abp.Company;
+
+@inject IHtmlLocalizer<ErpResource> L
+@inject IBankCardAppService _BankCardAppService
+@inject ICurrentClient  _currentClient
+@inject ICurrentTenant _currentTenant
+@inject ICurrentUser _currentUser
+@inject ICurrentCompany _currentCompany
+@inject ICurrentPrincipalAccessor _currentPrincipalAccessor
+@using Volo.Abp.VirtualFileSystem;
+@inject IVirtualFileProvider _virtualFileProvider;
+<div>
+    Client<br />
+    Id:  @_currentClient.Id<br />
+    IsAuthenticated:  @_currentClient.IsAuthenticated<br />
+</div>
+<br />
+<br />
+<div>
+    Tenant<br />
+    Id:  @_currentTenant.Id<br />
+    Name:  @_currentTenant.Name<br />
+    TenancySide:  @_currentTenant.GetMultiTenancySide()<br />
+    IsAvailable:  @_currentTenant.IsAvailable<br />
+</div>
+<br />
+<br />
+<div>
+    Company<br />
+    Id:  @_currentCompany.Id<br />
+    Name:  @_currentCompany.Name<br />
+    IsAuthenticated:  @_currentCompany.IsAuthenticated<br />
+</div>
+<br />
+<br />
+<div>
+    User<br />
+    Id:  @_currentUser.Id<br />
+    Name:  @_currentUser.Name<br />
+    SurName:  @_currentUser.SurName<br />
+    UserName:  @_currentUser.UserName<br />
+    TenantId:  @_currentUser.TenantId<br />
+    Roles:  @string.Join(",", _currentUser.Roles) <br />
+    Email:  @_currentUser.Email<br />
+    PhoneNumber:  @_currentUser.PhoneNumber<br />
+    UserType:  @_currentUser.GetUserType()<br />
+    ClientType:  @_currentUser.GetClientType()<br />
+    LinkTenantIds:  @string.Join(",", _currentUser.GetLinkTenantIds()) <br />
+    IsAuthenticated:  @_currentUser.IsAuthenticated<br />
+</div>
+@{
+    @*var directoryContents = _virtualFileProvider.GetDirectoryContents("/wwwroot/libs/a_ui/css");
+        foreach (var item in directoryContents)
+        {
+            <h5>@item.Name @item.PhysicalPath</h5>
+            if (item.IsDirectory)
+            {
+                var directoryContents1 = _virtualFileProvider.GetDirectoryContents(item.PhysicalPath);
+                foreach (var item1 in directoryContents1)
+                {
+                    <h6>@item1.Name @item1.PhysicalPath</h6>
+                    if (item1.IsDirectory)
+                    {
+                        var directoryContents2 = _virtualFileProvider.GetDirectoryContents(item1.PhysicalPath);
+                        foreach (var item2 in directoryContents2)
+                        {
+                            <h7>@item2.Name @item2.PhysicalPath</h7>
+                            if (item2.IsDirectory)
+                            {
+
+                            }
+                        }
+                    }
+                }
+            }
+        }*@
+    @*var guid = await _BankCardAppService.CreateAsync(new CreateBankCardDto
+        {
+            AccountNo = "6226565645654564",
+            BankName = "中国民生银行",
+            RealName = "张某某",
+        });
+        <h1 class="display-4">@guid</h1>*@
+    @*using (_currentTenant.Change(Guid.Parse("446a5211-3d72-4339-9adc-845151f8ada0")))
+        {
+            var newPrincipal = new ClaimsPrincipal(
+                    new ClaimsIdentity(
+                        new Claim[] {
+                            new Claim(AbpClaimTypes.UserId, Guid.NewGuid().ToString()),
+                            new Claim(AbpClaimTypes.UserName, "weidyg")
+                        }
+                    )
+                );
+            using (_currentPrincipalAccessor.Change(newPrincipal))
+            {
+                var list2 = await _BankCardAppService.GetListAsync(new QueryBankCardDto());
+                foreach (var item in list2.Items)
+                {
+                    <h1>@item.BankName</h1>
+                }
+            }
+        }*@
+}
+@*<div>
+        @(await Component.InvokeAsync<LanguageSwitchViewComponent>())
+        @if (_currentUser.IsAuthenticated)
+        {
+            using (_currentTenant.Change(Guid.Parse("39fa5522-deb5-e38d-5ac8-0d2a5373c5be")))
+            {
+                var list2 = await _BankCardAppService.GetListAsync(new QueryBankCardDto());
+                foreach (var item in list2)
+                {
+                    <div>@item.Id</div>
+                    var bankCard = await _BankCardAppService.GetAsync(item.Id);
+                    <div>@bankCard.BankName  @bankCard.AccountNo  @bankCard.RealName</div>
+                }
+
+            }
+            @L["Menu.Home"] @L["Menu.LogOut"]<br />
+            <div> @L["Welcome"] @_currentUser.UserName</div>
+        }
+        else
+        {
+            <a href="/login">@L["Login"]</a>
+
+            string authenticationScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            var claimsIdentity = new ClaimsIdentity(new List<Claim> {
+                        new Claim(AbpClaimTypes.TenantId,"39fa5522-deb5-e38d-5ac8-0d2a5373c5be"),
+                        new Claim(AbpClaimTypes.UserId,"39fa5522-deb5-e38d-5ac8-0d2a5373c5be"),
+                        new Claim(AbpClaimTypes.UserName,"张三"),
+                        new Claim(AbpClaimTypes.Role,"admin"),
+                    }, authenticationScheme);
+            await HttpContext.SignInAsync(authenticationScheme, new ClaimsPrincipal(claimsIdentity));
+        }
+        <a-button id="myBtn" danger>@L["Login"]</a-button>
+        <a-button id="myBtn0" type="Dashed">@L["Login"]</a-button>
+        <a-button id="myBtn1" type="Primary">@L["Login"]</a-button>
+    </div>*@
+
+@section Scripts{
+    <script>
+                                                //myCompanyName.erp.reseller.resellerLevel
+                                                //    .getPageList(1, 10, {})
+                                                //    .then(function (result) {
+                                                //        result.items.forEach(f => f.key = f.id);
+                                                //        data.value = result.items;
+                                                //        //console.log(data.value);
+                                                //    });
+    </script>
+}

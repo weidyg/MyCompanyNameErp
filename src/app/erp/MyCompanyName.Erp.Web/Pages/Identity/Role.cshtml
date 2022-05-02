@@ -1,0 +1,24 @@
+﻿@page
+@model RolesModel
+
+@inject IStringLocalizer<ErpResource> L
+@{
+    ViewData["Title"] = L[ErpMenus.System.Identity_Role];
+}
+@{var templates = new List<ColumnTpl>(){
+      new ColumnTpl("name",@<span>
+    <span style="margin-right:12px;">{{ text }}</span>
+    <a-tag v-if="record.isDefault" color="green">@L["DisplayName:IsDefault"]</a-tag>
+    <a-tag v-if="record.isPublic" color="blue">@L["DisplayName:IsPublic"]</a-tag>
+</span>)
+  };
+}
+<vc:data-table id="rolesTable" templates="templates" />
+<vc:form-modal id="createModal" />
+<vc:form-modal id="editModal" />
+<vc:permission-edit />
+
+@section Scripts {
+    <a-script type="@typeof(PermissionEditContributor)" />
+    <a-script src="/Pages/Identity/Role.cshtml.js" />
+}

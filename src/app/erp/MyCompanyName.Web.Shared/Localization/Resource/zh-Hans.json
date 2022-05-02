@@ -1,0 +1,18 @@
+{
+  "culture": "zh-Hans",
+  "texts": {
+    "Permission": "权限",
+    "SelectAllInAllTabs": "授予所有权限",
+    "SelectAllInThisTab": "全选",
+
+    "SearchIerms": "查询列表",
+    "PleaseInput": "请输入",
+    "Search": "search",
+    "Refresh": "刷新",
+    "ColumnSettings": "列设置",
+    "ColumnDisplay": "列显示",
+    "Reset": "重置",
+    "Enable": "启用",
+    "Disable": "禁用"
+  }
+}

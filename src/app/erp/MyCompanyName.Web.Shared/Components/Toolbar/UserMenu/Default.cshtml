@@ -1,0 +1,57 @@
+﻿@using Volo.Abp.MultiTenancy
+@using Volo.Abp.UI.Navigation
+@using Volo.Abp.Users
+@inject ICurrentUser CurrentUser
+@inject ICurrentTenant CurrentTenant
+@model ApplicationMenu
+@if (CurrentUser.IsAuthenticated)
+{
+    <a-dropdown arrow placement="bottomRight">
+        <span style="cursor:pointer;margin:8px 12px">
+            <a-avatar src="/file/image/avatar/@(CurrentUser.Id)">
+                <template #icon>
+                    <i class="fa fa-user"></i>
+                </template>
+            </a-avatar>
+            @CurrentUser.UserName
+            @if (CurrentUser.TenantId != null)
+            {<span>[ @CurrentTenant.Name ]</span>}
+        </span>
+        @if (Model.Items.Any())
+        {
+            <template #overlay>
+                <a-menu>
+                    @foreach (var menuItem in Model.Items)
+                    {
+                        var elementId = string.IsNullOrEmpty(menuItem.ElementId) ? string.Empty : $"id=\"{menuItem.ElementId}\"";
+                        var cssClass = string.IsNullOrEmpty(menuItem.CssClass) ? string.Empty : menuItem.CssClass;
+                        var disabled = menuItem.IsDisabled ? "disabled" : string.Empty;
+                        var url = string.IsNullOrEmpty(menuItem.Url) ? "#" : Url.Content(menuItem.Url);
+                        <a-menu-item disabled="@menuItem.IsDisabled" style="min-width:120px">
+                            @if (menuItem.Target.IsNullOrWhiteSpace())
+                            {
+                                <a @Html.Raw(elementId) class="@cssClass @disabled"
+                                   title="@menuItem.DisplayName"
+                                   data-key="@menuItem.Name"
+                                   data-url="@url"
+                                   v-on:click="OnOpen($event)">
+                                    @if (menuItem.Icon?.StartsWith("fa") ?? false)
+                                    {<i class="@menuItem.Icon" style="margin-right:16px"></i>}
+                                    @menuItem.DisplayName
+                                </a>
+                            }
+                            else
+                            {
+                                <a class="@cssClass @disabled" href="@url" target="@menuItem.Target" @Html.Raw(elementId)>
+                                    @if (menuItem.Icon?.StartsWith("fa") ?? false)
+                                    {<i class="@menuItem.Icon" style="margin-right:16px"></i>}
+                                    @menuItem.DisplayName
+                                </a>
+                            }
+                        </a-menu-item>
+                    }
+                </a-menu>
+            </template>
+        }
+    </a-dropdown>
+}

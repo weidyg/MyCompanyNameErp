@@ -1,0 +1,42 @@
+﻿@using Volo.Abp.UI.Navigation
+@model ApplicationMenuItem
+@{
+    var elementId = string.IsNullOrEmpty(Model.ElementId) ? string.Empty : $"id={Model.ElementId}";
+    var cssClass = string.IsNullOrEmpty(Model.CssClass) ? string.Empty : Model.CssClass;
+    var disabled = Model.IsDisabled ? "disabled" : string.Empty;
+    var url = string.IsNullOrEmpty(Model.Url) ? "#" : Url.Content(Model.Url);
+}
+@if (Model.IsLeaf)
+{
+    if (Model.Url != null)
+    {
+        <a-menu-item key="@Model.Name" class="item @cssClass" @elementId @disabled>
+            <a class="item-a"
+               data-key="@Model.Name"
+               title="@Model.DisplayName"
+               data-url="@url"
+               data-target="@Model.Target"
+               v-on:click="OnOpen($event)">
+                @if (Model.Icon?.StartsWith("fa") ?? false)
+                {<i class="@Model.Icon menu-item-icon"></i>}
+                @Model.DisplayName
+            </a>
+        </a-menu-item>
+    }
+}
+else
+{
+    <a-sub-menu key="@Model.Name" class="group @cssClass" @elementId @disabled>
+        <template #title>
+            <span>
+                @if (Model.Icon?.StartsWith("fa") ?? false)
+                {<i class="@Model.Icon menu-item-icon"></i>}
+                <span>@Model.DisplayName</span>
+            </span>
+        </template>
+        @foreach (var childMenuItem in Model.Items)
+        {
+            @await Html.PartialAsync("~/Components/Menu/_MenuItem.cshtml", childMenuItem)
+        }
+    </a-sub-menu>
+}

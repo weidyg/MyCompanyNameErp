@@ -1,0 +1,18 @@
+﻿@using Microsoft.AspNetCore.Http.Extensions
+@model TenantSwitchViewComponentModel
+@{var encodedPathQuery = Context.Request.GetEncodedPathAndQuery(); }
+<a-dropdown>
+    <template #overlay>
+        <a-menu>
+            @foreach (var tenant in Model.OtherTenants)
+            {
+                <a-menu-item>
+                    <a href="@Model.TenantChange(tenant,encodedPathQuery)">@tenant.DisplayName</a>
+                </a-menu-item>
+            }
+        </a-menu>
+    </template>
+    <span style="cursor:pointer;">
+        @Model.CurrentTenant.DisplayName
+    </span>
+</a-dropdown>

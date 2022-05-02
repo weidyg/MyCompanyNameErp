@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\..\..\common.props" />
+  <Import Project="..\..\..\..\configureawait.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>MyCompanyName.Erp</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="SystemService\FileAppService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="Volo.Abp.AutoMapper" Version="4.4.0" />
+    <PackageReference Include="Volo.Abp.Ddd.Application" Version="4.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\modules\Identity\MyCompanyName.Identity.Application\MyCompanyName.Identity.Application.csproj" />
+    <ProjectReference Include="..\MyCompanyName.Erp.Application.Contracts\MyCompanyName.Erp.Application.Contracts.csproj" />
+    <ProjectReference Include="..\MyCompanyName.Erp.Domain\MyCompanyName.Erp.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

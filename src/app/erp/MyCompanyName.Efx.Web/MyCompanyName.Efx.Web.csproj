@@ -1,0 +1,94 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <Import Project="..\..\..\..\common.props" />
+  <Import Project="..\..\..\..\configureawait.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>MyCompanyName.Efx.Web</RootNamespace>
+    <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
+    <MvcRazorExcludeRefAssembliesFromPublish>false</MvcRazorExcludeRefAssembliesFromPublish>
+    <PreserveCompilationReferences>true</PreserveCompilationReferences>
+    <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+    <!--<RazorCompileOnBuild>false</RazorCompileOnBuild>
+		<RazorCompileOnPublish>false</RazorCompileOnPublish>-->
+    <UserSecretsId>Erp-4681b4fd-151f-4221-84a4-929d86723e4c</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="wwwroot\**\*">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Logs\**" />
+    <Compile Remove="wwwroot\components\**" />
+    <Content Remove="Logs\**" />
+    <Content Remove="wwwroot\components\**" />
+    <EmbeddedResource Remove="Logs\**" />
+    <EmbeddedResource Remove="wwwroot\components\**" />
+    <None Remove="Logs\**" />
+    <None Remove="wwwroot\components\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Components\Menu\_MenuItem.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Components\Menu\_MenuItem.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Update="Components\**\*.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Components\**\*.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Pages\**\*.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Pages\**\*.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.AspNetCore.MultiTenancy" Version="4.4.0" />
+    <PackageReference Include="Volo.Abp.AspNetCore.Mvc" Version="4.4.0" />
+    <PackageReference Include="Volo.Abp.Autofac" Version="4.4.0" />
+    <PackageReference Include="Volo.Abp.Swashbuckle" Version="4.4.0" />
+    <PackageReference Include="Volo.Abp.AspNetCore.Serilog" Version="4.4.0" />
+    <PackageReference Include="Volo.Abp.AspNetCore.Authentication.JwtBearer" Version="4.4.0" />
+    <PackageReference Include="Razui.Bundling" Version="1.0.0-alpha.200225" />
+    <PackageReference Include="Serilog.AspNetCore" Version="4.1.0" />
+    <PackageReference Include="Serilog.Sinks.Async" Version="1.5.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.9">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MyCompanyName.Web.Shared\MyCompanyName.Web.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="wwwroot\favicon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

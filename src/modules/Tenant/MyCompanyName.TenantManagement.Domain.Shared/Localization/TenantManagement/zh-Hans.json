@@ -1,0 +1,6 @@
+{
+  "culture": "zh-Hans",
+  "texts": {
+    "DuplicateTenancyName": "租户名称 {0} 重复！"
+  }
+}

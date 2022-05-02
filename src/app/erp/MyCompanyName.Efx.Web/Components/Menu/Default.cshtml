@@ -1,0 +1,27 @@
+﻿@using Volo.Abp.MultiTenancy
+@using Volo.Abp.UI.Navigation
+@using Volo.Abp.Users
+@inject ICurrentUser CurrentUser
+@inject ICurrentTenant CurrentTenant
+@inject IHtmlLocalizer<ErpResource> L
+@model ApplicationMenu
+
+<a-layout-sider theme="light"
+                v-model:collapsed="collapsed"
+                :collapsed-width="50"
+                :trigger="null" collapsible>
+
+    <a-menu mode="inline"
+            theme="light"
+            :inline-collapsed="collapsed"
+            :inline-indent="18"
+            v-model:selectedKeys="selectedKeys">
+        <div class="logo">
+            <vc:main-logo></vc:main-logo>
+        </div>
+        @foreach (var childMenuItem in Model.Items)
+        {
+            @await Html.PartialAsync("~/Components/Menu/_MenuItem.cshtml", childMenuItem)
+        }
+    </a-menu>
+</a-layout-sider>

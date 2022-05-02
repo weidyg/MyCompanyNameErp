@@ -1,0 +1,50 @@
+﻿@inject IBrandingProvider BrandingProvider
+@{
+    var pageTitle = ViewData["Title"] == null ? BrandingProvider.AppName : $"{ViewData["Title"]}-{BrandingProvider.AppName}";
+    var rtl = CultureHelper.IsRtl ? "rtl" : string.Empty;
+    var isPage = (ViewData["PageType"]?.ToString() ?? "") != "layout";
+}
+<!DOCTYPE html>
+<html lang="@CultureInfo.CurrentCulture.Name" dir="@rtl">
+<head compress>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@pageTitle</title>
+    <a-style-bundle name="@StandardBundles.Styles.Lib" />
+    @*<a-style-bundle>
+            <a-style src="/libs/fontawesome/css/all.css" />
+            <a-style src="/libs/fontawesome/css/v4-shims.css" />
+            <a-style src="/libs/ant-design-vue/dist/antd.css" />
+        </a-style-bundle>*@
+    <a-style src="/css/global.css" />
+    <a-style if="isPage" src="/css/page.css"></a-style>
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body>
+    @Html.AntiForgeryToken()
+    <div id="app"> @RenderBody()</div>
+    <environment names="Development">
+        <script src="/libs/vue/dist/vue.global.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="/libs/vue/dist/vue.global.prod.js"></script>
+    </environment>
+    <a-script-bundle name="@StandardBundles.Scripts.Lib" />
+    <script src="/Abp/ApplicationConfigurationScript"></script>
+    <script src="/Abp/ServiceProxyScript"></script>
+    <a-script-bundle>
+        <a-script src="/script/validate.js"></a-script>
+        <a-script src="/script/auth.js"></a-script>
+        <a-script src="/script/service.js"></a-script>
+        <a-script src="/script/locales.js"></a-script>
+        <a-script src="/script/global.js"></a-script>
+    </a-script-bundle>
+    <a-script-bundle if="isPage">
+        <a-script src="/script/page.js"></a-script>
+        <a-script type="typeof(DataTableContributor)"></a-script>
+        <a-script type="typeof(FormModalContributor)"></a-script>
+    </a-script-bundle>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,103 @@
+{
+  "culture": "zh-Hans",
+  "texts": {
+    "MyCompanyNameERP": "XXXERP",
+    "ApplyCompanyAccount": "申请公司账号",
+    "Login": "登录",
+    "SignIn": "登 录",
+    "Create": "创建",
+    "All": "全部",
+    "Add": "添加",
+    "Enable": "启用",
+    "Disable": "禁用",
+    "PleaseInput": "请输入",
+    "KeyWords": "关键词",
+    "Sure": "确定",
+    "Success": "成功",
+    "BackTo": "返回",
+    "UploadingWithThreeDot": "上传中...",
+    "SentFailed": "发送失败.",
+    //
+    "Find{0}": "找到如下与{0}相关的记录。",
+    "NoFind{0}": "未找到与{0}相关的记录。",
+    //登录页面
+    "OmniChannelSolutionForECommerce": "电商全渠道解决方案",
+    "ContactNumber": "联系电话",
+    "AccountLogin": "帐号登录",
+    "UserNameOrLoginAccount": "用户名（登录帐号）",
+    "PleaseInputAPassword": "请输入密码",
+
+    "MyCompanyName": "福建省XXX有限公司",
+    "FujianICPPrepareNo{0}-{1}": "闽ICP备{0}号-{1}",
+    "FujianPublicNetworkAnbeiNo{0}": "闽公网安备{0}号",
+
+    "UserLockedOutMessage": "登录失败,用户账户已被锁定.请稍后再试.",
+    "InvalidUserNameOrPassword": "用户名或密码错误!",
+    "LoginIsNotAllowed": "无法登录!你需要验证邮箱地址/手机号.",
+    "LoginSystemIsNotAllowed": "无法登录!你不是该系统的用户.",
+    //
+    "SearchIerms": "搜索条件",
+    "UsernameOrPasswordCannotBeEmpty": "用户名或密码不能为空！",
+    "LoginSuccess": "登录成功",
+    "GoingToHomePage": "页面跳转中，请稍后...",
+    "AllMenus": "全部菜单",
+    "Authorization failed! Given policy has not granted.": "授权失败！给定的策略尚未授予。",
+
+    "SelectAllInAllTabs": "授予所有权限",
+    "SelectAllInThisTab": "全选",
+    //--------------------------业务错误码--------------------------
+    "MyCompanyName.Erp:000001": "{Name}应该是唯一的。{Value}已被占用！",
+    "MyCompanyName.Erp:000002": "{Name}[{Value}]已存在，请勿重复添加！",
+
+    //--------------------------权限--------------------------
+    "Permission": "权限",
+    "Permission:Create": "创建",
+    "Permission:Edit": "编辑",
+    "Permission:Delete": "删除",
+    "Permission:ChangePermissions": "更改权限",
+
+    "Permission:FinanceManagement": "财务管理",
+    "Permission:BankCard": "银行卡",
+    "Permission:ThirdPartyPay": "第三方支付",
+
+    "Permission:ResellerManagement": "分销管理",
+    "Permission:Level": "分销等级",
+    "Permission:Reseller": "分销商",
+
+    //--------------------------菜单--------------------------
+    "Menu.Home": "首页",
+    "Menu.MyProfile": "个人资料",
+    "Menu.LogOut": "登出",
+
+    "Menu.Product": "产品",
+    "Menu.Product.Info": "商品信息",
+    "Menu.Product.Info.List": "商品档案",
+    "Menu.Product.Info.Category": "类目管理",
+    "Menu.Product.Info.Brand": "品牌管理",
+
+    "Menu.Order": "订单",
+    "Menu.Warehouse": "仓储",
+
+    "Menu.Reseller": "分销商",
+    "Menu.Reseller.Info": "分销信息",
+    "Menu.Reseller.Info.Level": "分销等级",
+    "Menu.Reseller.Info.List": "分销商列表",
+
+    "Menu.Finance": "财务",
+    "Menu.Finance.Payer": "分销账户",
+    "Menu.Finance.Payer.Account": "账户管理",
+    "Menu.Finance.Payer.Account.Detail": "账户明细",
+    "Menu.Finance.Payer.TradeDetail": "交易明细",
+
+    "Menu.Finance.BankCard": "支付账号",
+
+    "Menu.Finance.Payee": "收款配置",
+    "Menu.Finance.Payee.BankCard": "收款账号",
+    "Menu.Finance.Payee.ThirdPartyPay": "第三方支付",
+
+    "Menu.System": "系统",
+    "Menu.System.Identity": "身份管理",
+    "Menu.System.Identity.Roles": "角色列表",
+    "Menu.System.Identity.Users": "用户列表"
+  }
+}

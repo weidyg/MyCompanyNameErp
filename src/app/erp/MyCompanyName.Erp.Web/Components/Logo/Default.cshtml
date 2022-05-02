@@ -1,0 +1,9 @@
+﻿@inject IBrandingProvider BrandingProvider
+<a style="padding: 0px 8px;" href="~/">
+    @if (!BrandingProvider.LogoUrl.IsNullOrWhiteSpace())
+    {
+        <img style="height:50px;" src="@BrandingProvider.LogoUrl"
+             alt="@BrandingProvider.AppName"
+             title="@BrandingProvider.AppName">
+    }
+</a>

@@ -1,0 +1,18 @@
+﻿@using Microsoft.AspNetCore.Http.Extensions
+@model LanguageSwitchViewComponentModel
+@{var encodedPathQuery = Context.Request.GetEncodedPathAndQuery(); }
+<a-dropdown>
+    <template #overlay>
+        <a-menu>
+            @foreach (var language in Model.OtherLanguages)
+            {
+                <a-menu-item>
+                    <a href="@Model.LanguageChangeHref(language,encodedPathQuery)">@language.DisplayName</a>
+                </a-menu-item>
+            }
+        </a-menu>
+    </template>
+    <i class="fa fa-language" style="cursor:pointer;font-size:18px">
+        @*@Model.CurrentLanguage.DisplayName*@
+    </i>
+</a-dropdown>

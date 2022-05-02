@@ -1,0 +1,54 @@
+﻿:root {
+    --primary-color-1: #e6f7ff;
+    --primary-color-2: #bae7ff;
+    --primary-color-5: #40a9ff;
+    --primary-color: #1890ff;
+    --link-color: #1890ff;
+    --success-color: #52c41a;
+    --warning-color: #faad14;
+    --error-color: #ff4d4f;
+    --font-size-base: 14px;
+    --heading-color: rgba(0, 0, 0, 0.85);
+    --text-color: rgba(0, 0, 0, 0.85);
+    --text-color-secondary: rgba(0, 0, 0, 0.45);
+    --disabled-color: rgba(0, 0, 0, 0.25);
+    --border-radius-base: 2px;
+    --border-color-base: #d9d9d9;
+    --box-shadow-base: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+    --info-color: #1890ff;
+    --processing-color: #1890ff;
+    --highlight-color: #ff4d4f;
+    --normal-color: #d9d9d9;
+    --white: #fff;
+    --black: #000;
+}
+/**自定义滚动条样式 */
+::-webkit-scrollbar {
+    cursor: pointer;
+    width: 6px;
+    height: 6px;
+    background: #f0f2f5;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+    -webkit-border-radius: 2em;
+    -moz-border-radius: 2em;
+    border-radius: 2em;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #9c9da0;
+    -webkit-border-radius: 2em;
+    -moz-border-radius: 2em;
+    border-radius: 2em
+}
+
+[v-cloak] {
+    display: none;
+}
+
+body {
+    overflow: hidden;
+    background: #f0f2f5;
+}

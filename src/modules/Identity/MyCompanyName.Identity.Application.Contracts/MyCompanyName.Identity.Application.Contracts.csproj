@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <AssemblyName>MyCompanyName.Identity.Application.Contracts</AssemblyName>
+    <PackageId>MyCompanyName.Identity.Application.Contracts</PackageId>
+    <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <RootNamespace>MyCompanyName.Identity</RootNamespace>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Ddd.Application.Contracts" Version="4.4.0" />
+    <PackageReference Include="Volo.Abp.Authorization" Version="4.4.0" />
+    <ProjectReference Include="..\MyCompanyName.Identity.Domain.Shared\MyCompanyName.Identity.Domain.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

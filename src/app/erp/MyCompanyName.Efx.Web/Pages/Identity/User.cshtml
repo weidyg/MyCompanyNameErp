@@ -1,0 +1,22 @@
+﻿@page
+@model UsersModel
+
+@inject IStringLocalizer<ErpResource> L
+@{
+    ViewData["Title"] = L[EfxMenus.System.Identity_User];
+}
+@{var templates = new List<ColumnTpl>(){
+      new ColumnTpl("fullname",@<span>{{`${record.surname||'-'}${record.name||'-'}` }}</span>)
+      ,new ColumnTpl("lockoutEnabled",@<a-tag :color="text?'#f50':'#87d068'">{{text?'已启用':'已关闭'}}</a-tag>)
+      ,new ColumnTpl("lockoutEnd",@<span> {{record.lockoutEnabled? formatDateTime(text):""}}</span>)
+  };
+}
+<vc:data-table id="usersTable" templates="templates" />
+<vc:form-modal id="createModal" />
+<vc:form-modal id="editModal" />
+<vc:permission-edit />
+
+@section Scripts {
+    <a-script type="@typeof(PermissionEditContributor)" />
+    <a-script src="/Pages/Identity/User.cshtml.js" />
+}

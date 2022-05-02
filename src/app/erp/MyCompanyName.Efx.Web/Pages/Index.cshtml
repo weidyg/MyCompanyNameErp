@@ -1,0 +1,84 @@
+﻿@page
+@model IndexModel
+@inject IStringLocalizer<ErpResource> L
+@{
+    ViewData["PageType"] = "layout";
+}
+<a-app id="adminLayout">
+    <a-layout hasSider>
+        <vc:sider-menu />
+        <a-layout>
+            <a-layout-header>
+                <a-row v-bind="{justify:'start',align:'middle'}">
+                    <a-col>
+                        <i class="fa fa-indent trigger" v-if="collapsed"
+                           v-on:click="() => (collapsed = !collapsed)"></i>
+                        <i class="fa fa-outdent trigger" v-else v-on:click="() => (collapsed = !collapsed)"></i>
+                    </a-col>
+                    <a-col flex="auto">
+
+                    </a-col>
+                    <a-col flex="0 0 auto">
+                        <div style="margin-right:8px">
+                            <vc:tenant-switch />
+                        </div>
+                    </a-col>
+                    <a-col flex="0 0 auto">
+                        <div style="margin-right: 8px;padding-top:4px">
+                            <vc:language-switch />
+                        </div>
+                    </a-col>
+                    <a-col flex="0 0 auto">
+                        <vc:user-menu />
+                    </a-col>
+                </a-row>
+            </a-layout-header>
+            <a-layout-content>
+                <div id="menuTab">
+                    <a-tabs v-model:active-key="activeKey" size="small" hide-add type="editable-card" v-on:edit="OnEdit">
+                        <a-tab-pane v-for="pane in panes" :key="pane.key" :closable="pane.closable">
+                            <template #tab>
+                                <a-dropdown :trigger="['contextmenu']">
+                                    <span>
+                                        <i v-if="pane.icon" :class="pane.icon"></i>
+                                        {{pane.title}}
+                                    </span>
+                                    <template #overlay>
+                                        <a-menu style="min-width:120px">
+                                            <template v-for="(menu,index) in  pane.contextmenu||[]">
+                                                <a-menu-item :key="index" v-if="menu.type!=='divider'" v-on:click="menu.OnClick">
+                                                    <i v-if="menu.icon" :class="menu.icon"></i>   {{menu.title}}
+                                                </a-menu-item>
+                                                <a-menu-divider v-else />
+                                            </template>
+                                        </a-menu>
+                                    </template>
+                                </a-dropdown>
+                            </template>
+                            <a-spin :spinning="pane.loading" tip="@L["LoadingWithThreeDot"]">
+                                <iframe frameborder="0"
+                                        allowtransparency="true"
+                                        :src="pane.src"
+                                        v-if="pane.render"
+                                        v-on:load="pane.loading=false">
+                                </iframe>
+                            </a-spin>
+                        </a-tab-pane>
+                    </a-tabs>
+                </div>
+            </a-layout-content>
+        </a-layout>
+    </a-layout>
+</a-app>
+@section Styles {
+    <a-style-bundle>
+        <a-style type="@typeof(SiderMenuStyleContributor)" />
+        <a-style src="/Pages/Index.cshtml.css" />
+    </a-style-bundle>
+}
+@section Scripts {
+    <a-script-bundle>
+        <a-script type="@typeof(SiderMenuScriptContributor)" />
+        <a-script src="/Pages/Index.cshtml.js" />
+    </a-script-bundle>
+}

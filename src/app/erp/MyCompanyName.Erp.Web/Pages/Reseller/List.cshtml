@@ -1,0 +1,10 @@
+﻿@page
+@model ListModel
+@inject IStringLocalizer<ErpResource> L
+@{
+    ViewData["Title"] = L[ErpMenus.Reseller.Info_List];
+}
+<vc:data-table id="resellerTable" templates="null" />
+@section Scripts {
+    <a-script src="/Pages/Reseller/List.cshtml.js" />
+}

@@ -1,0 +1,17 @@
+{
+  "Culture": "en",
+  "Texts": {
+    "Permission": "Permission",
+    "SelectAllInAllTabs": "Grant all permissions",
+    "SelectAllInThisTab": "Select all",
+    "SearchIerms": "Search Ierms",
+    "PleaseInput": "Please input",
+    "Search": "search",
+    "Refresh": "refresh",
+    "ColumnSettings": "column settings",
+    "ColumnDisplay": "column display",
+    "Reset": "reset",
+    "Enable": "enable",
+    "Disable": "disable"
+  }
+}

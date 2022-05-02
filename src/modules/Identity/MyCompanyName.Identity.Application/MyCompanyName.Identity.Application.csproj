@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <AssemblyName>MyCompanyName.Identity.Application</AssemblyName>
+    <PackageId>MyCompanyName.Identity.Application</PackageId>
+    <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <RootNamespace>MyCompanyName.Identity</RootNamespace>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="5.0.0" />
+    <PackageReference Include="PinYinConverterCore" Version="1.0.2" />
+    <PackageReference Include="Volo.Abp.AutoMapper" Version="4.4.0" />
+    <PackageReference Include="Volo.Abp.Ddd.Application" Version="4.4.0" />
+    <ProjectReference Include="..\MyCompanyName.Identity.Application.Contracts\MyCompanyName.Identity.Application.Contracts.csproj" />
+    <ProjectReference Include="..\MyCompanyName.Identity.Domain\MyCompanyName.Identity.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

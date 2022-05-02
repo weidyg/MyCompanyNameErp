@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\..\..\common.props" />
+  <Import Project="..\..\..\..\configureawait.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>MyCompanyName.Erp</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="IdentityManagement\**" />
+    <Compile Remove="MultiTenancy\**" />
+    <EmbeddedResource Remove="IdentityManagement\**" />
+    <EmbeddedResource Remove="MultiTenancy\**" />
+    <None Remove="IdentityManagement\**" />
+    <None Remove="MultiTenancy\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data\NullErpDbSchemaMigrator.cs" />
+    <Compile Remove="Entities\Finance\PayAccountDetailDo.cs" />
+    <Compile Remove="Entities\Finance\PayAccountInfoDo.cs" />
+    <Compile Remove="Entities\Finance\TradeOrderInfoDo.cs" />
+    <Compile Remove="Entities\Finance\TradeOrderItemDo.cs" />
+    <Compile Remove="Entities\Finance\TrpPayConfigDo.cs" />
+    <Compile Remove="Entities\System\IdentityRole.cs" />
+    <Compile Remove="Entities\System\IdentityUser.cs" />
+    <Compile Remove="Entities\System\IdentityUserOrganizationUnit.cs" />
+    <Compile Remove="Entities\System\IdentityUserRole.cs" />
+    <Compile Remove="Entities\System\OrganizationUnit.cs" />
+    <Compile Remove="Entities\System\OrganizationUnitRole.cs" />
+    <Compile Remove="Entities\System\UserInfo.cs" />
+    <Compile Remove="Entities\System\UserRole.cs" />
+    <Compile Remove="PermissionManagement\AuthorizationService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Ddd.Domain" Version="4.4.0" />
+    <PackageReference Include="Volo.Abp.Authorization" Version="4.4.0" />
+    <PackageReference Include="Volo.Abp.Caching.StackExchangeRedis" Version="4.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\framework\MyCompanyName.Abp.Blob\MyCompanyName.Abp.Blob.csproj" />
+    <ProjectReference Include="..\..\..\framework\MyCompanyName.Abp.Sms\MyCompanyName.Abp.Sms.csproj" />
+    <ProjectReference Include="..\..\..\modules\Identity\MyCompanyName.Identity.Domain\MyCompanyName.Identity.Domain.csproj" />
+    <ProjectReference Include="..\..\..\modules\Tenant\MyCompanyName.TenantManagement.Domain\MyCompanyName.TenantManagement.Domain.csproj" />
+    <ProjectReference Include="..\MyCompanyName.Erp.Domain.Shared\MyCompanyName.Erp.Domain.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Entities\System\" />
+  </ItemGroup>
+
+</Project>
